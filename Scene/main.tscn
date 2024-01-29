@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://or3gxxgpv81k"]
+
+[ext_resource type="Script" path="res://Scene/main.gd" id="1_pot3u"]
+[ext_resource type="Texture2D" uid="uid://d0jymvegy6hn4" path="res://assets/textures/background.png" id="2_lkqr7"]
+[ext_resource type="PackedScene" uid="uid://d6qfcsm6lxmv" path="res://Scene/player.tscn" id="3_n7557"]
+[ext_resource type="Texture2D" uid="uid://c7r5uo3vop6f1" path="res://assets/textures/ground.png" id="4_pv5b8"]
+[ext_resource type="PackedScene" uid="uid://cno4fnh65qdvl" path="res://Scene/hud.tscn" id="5_ptmin"]
+[ext_resource type="PackedScene" uid="uid://eby8qbq7dc88" path="res://Scene/menu_layer.tscn" id="6_jsg0l"]
+
+[node name="Main" type="Node2D" groups=["pause"]]
+script = ExtResource("1_pot3u")
+
+[node name="BG" type="TextureRect" parent="."]
+offset_right = 480.0
+offset_bottom = 856.49
+texture = ExtResource("2_lkqr7")
+stretch_mode = 1
+
+[node name="bgDown" type="TextureRect" parent="."]
+offset_left = 9.0
+offset_top = 854.0
+offset_right = 489.0
+offset_bottom = 1708.0
+texture = ExtResource("2_lkqr7")
+stretch_mode = 1
+flip_v = true
+
+[node name="Level_spawner_group" type="Node2D" parent="."]
+
+[node name="Ground" type="Area2D" parent="." groups=["pause"]]
+position = Vector2(-2, 843)
+
+[node name="TextureRect" type="TextureRect" parent="Ground"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 8
+texture = ExtResource("4_pv5b8")
+stretch_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+
+[node name="Collider" type="StaticBody2D" parent="Ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/Collider"]
+
+[node name="Player" parent="." instance=ExtResource("3_n7557")]
+position = Vector2(57, 513)
+
+[node name="Timer" type="Timer" parent="." groups=["pause"]]
+autostart = true
+
+[node name="HUD" parent="." instance=ExtResource("5_ptmin")]
+
+[node name="MenuLayer" parent="." instance=ExtResource("6_jsg0l")]
+layer = 2
+
+[connection signal="body_entered" from="Ground" to="." method="_on_ground_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

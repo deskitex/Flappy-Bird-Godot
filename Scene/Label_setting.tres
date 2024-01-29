@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://rx64ls850gs8"]
+
+[ext_resource type="FontFile" uid="uid://d1fqtu86wvt4" path="res://assets/fonts/flappyfont.TTF" id="1_icwvu"]
+
+[resource]
+font = ExtResource("1_icwvu")
+font_size = 48
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)

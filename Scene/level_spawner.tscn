@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5ebdkq3uwq6q"]
+
+[ext_resource type="Script" path="res://Scene/level_spawner.gd" id="1_4icdy"]
+[ext_resource type="Texture2D" uid="uid://0vi45s11bcs4" path="res://assets/textures/pipe.png" id="1_y23v7"]
+[ext_resource type="AudioStream" uid="uid://cdynh3fggis24" path="res://assets/audio/point.wav" id="3_mtivd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m0ivf"]
+size = Vector2(76, 478)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rico"]
+size = Vector2(44, 228)
+
+[node name="Level_Spawner" type="Node2D" groups=["pause"]]
+script = ExtResource("1_4icdy")
+
+[node name="PipeDown" type="Area2D" parent="."]
+position = Vector2(0, 907)
+
+[node name="Sprite2D" type="Sprite2D" parent="PipeDown"]
+texture = ExtResource("1_y23v7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PipeDown"]
+shape = SubResource("RectangleShape2D_m0ivf")
+
+[node name="PipeUp" type="Area2D" parent="."]
+position = Vector2(0, 237)
+rotation = 3.14159
+
+[node name="Sprite2D" type="Sprite2D" parent="PipeUp"]
+texture = ExtResource("1_y23v7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PipeUp"]
+shape = SubResource("RectangleShape2D_m0ivf")
+
+[node name="AreaScore" type="Area2D" parent="."]
+position = Vector2(0, 572)
+scale = Vector2(1.4282, 0.86704)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaScore"]
+shape = SubResource("RectangleShape2D_8rico")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(78, 327)
+scale = Vector2(3.84, 1)
+
+[node name="Point" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_mtivd")
+
+[connection signal="body_entered" from="PipeDown" to="." method="_on_pipe_down_body_entered"]
+[connection signal="body_entered" from="PipeUp" to="." method="_on_pipe_up_body_entered"]
+[connection signal="body_entered" from="AreaScore" to="." method="_on_area_score_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

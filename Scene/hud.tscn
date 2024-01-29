@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cno4fnh65qdvl"]
+
+[ext_resource type="Script" path="res://HUD.gd" id="1_28v0s"]
+[ext_resource type="FontFile" uid="uid://d1fqtu86wvt4" path="res://assets/fonts/flappyfont.TTF" id="2_4llu7"]
+[ext_resource type="LabelSettings" uid="uid://rx64ls850gs8" path="res://Scene/Label_setting.tres" id="2_y71cd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1283c"]
+font = ExtResource("2_4llu7")
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_28v0s")
+
+[node name="Label_Score" type="Label" parent="."]
+layout_mode = 1
+offset_right = 481.0
+offset_bottom = 49.0
+text = "0"
+label_settings = ExtResource("2_y71cd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label_HighScore" type="Label" parent="."]
+layout_mode = 1
+offset_right = 90.0
+offset_bottom = 23.0
+text = "High Score:"
+label_settings = SubResource("LabelSettings_1283c")
+
+[node name="Label_FPS" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 813.0
+offset_right = 80.0
+offset_bottom = 852.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 25
+text = "asdas"
+
+[node name="HUD" type="CanvasLayer" parent="."]

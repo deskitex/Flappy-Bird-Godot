@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=3 uid="uid://eby8qbq7dc88"]
+
+[ext_resource type="Texture2D" uid="uid://cq5b3ohlyecs6" path="res://assets/textures/message.png" id="1_6cwy2"]
+[ext_resource type="Script" path="res://Scene/menu_layer.gd" id="1_wcs2w"]
+[ext_resource type="FontFile" uid="uid://d1fqtu86wvt4" path="res://assets/fonts/flappyfont.TTF" id="3_k160m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s0c1q"]
+font = ExtResource("3_k160m")
+font_size = 48
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+
+[node name="MenuLayer" type="CanvasLayer"]
+script = ExtResource("1_wcs2w")
+
+[node name="StartMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StartMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -138.0
+offset_top = -307.0
+offset_right = 138.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="StartMenu"]
+layout_mode = 2
+offset_left = 102.0
+offset_top = 220.0
+offset_right = 378.0
+offset_bottom = 620.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_6cwy2")
+stretch_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="GameOverMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.5
+offset_top = -25.0
+offset_right = 42.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 31
+alignment = 1
+
+[node name="Score" type="Label" parent="GameOverMenu/VBoxContainer"]
+layout_mode = 2
+text = "score"
+label_settings = SubResource("LabelSettings_s0c1q")
+
+[node name="High_Score" type="Label" parent="GameOverMenu/VBoxContainer"]
+layout_mode = 2
+text = "High score"
+label_settings = SubResource("LabelSettings_s0c1q")
+
+[node name="Restart_Button" type="Button" parent="GameOverMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("3_k160m")
+theme_override_font_sizes/font_size = 48
+text = "Restart"
+
+[connection signal="pressed" from="GameOverMenu/VBoxContainer/Restart_Button" to="." method="_on_restart_button_pressed"]
